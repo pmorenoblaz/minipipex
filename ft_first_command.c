@@ -6,7 +6,7 @@
 /*   By: pmoreno- <pmoreno-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 15:41:53 by pmoreno-          #+#    #+#             */
-/*   Updated: 2022/04/08 18:32:34 by pmoreno-         ###   ########.fr       */
+/*   Updated: 2022/04/08 18:37:10 by pmoreno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_infile(int fd, int fd1[2])
 	dup2(fd1[1], STDOUT_FILENO);
 	close(fd1[1]);
 }
-
 
 void	ft_first_part(t_comm_path *act, char **envp, char **argv)
 {
@@ -49,4 +48,3 @@ void	ft_first_part(t_comm_path *act, char **envp, char **argv)
 	close(fd);
 	wait(&status);
 }
-
