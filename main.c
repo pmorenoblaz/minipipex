@@ -6,7 +6,7 @@
 /*   By: pmoreno- <pmoreno-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 15:42:16 by pmoreno-          #+#    #+#             */
-/*   Updated: 2022/03/23 17:51:16 by pmoreno-         ###   ########.fr       */
+/*   Updated: 2022/04/08 17:52:59 by pmoreno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,19 @@ void	ft_setcommand(t_comm_path *var, char	*arg)
 	var->next = 0;
 }
 
-t_comm_path	*ft_accesslist(char **l_paths, char **argv, int argc)
+t_comm_path	**ft_accesslist(char **l_paths, char **argv, int argc)
 {
 	int			i;
+	t_comm_path	**aux_l;
 	t_comm_path	*var;
 	int			co;
 
 	i = 2;
+	aux_l = malloc(sizeof(t_comm_path *));
+	*aux_l = 0;
 	while (i < argc - 1)
 	{
+		var = malloc(sizeof(t_comm_path));
 		co = access(argv[i], X_OK);
 		if (co == 0)
 		{
@@ -85,33 +89,17 @@ t_comm_path	*ft_accesslist(char **l_paths, char **argv, int argc)
 	return (aux_l);
 }
 
-void	print(t_comm_path **list_a)
-{
-	t_comm_path	*aux;
-
-	aux = *list_a;
-	while (aux)
-	{
-		if (aux)
-		{
-			printf("%s \n", aux->comm[0]);
-			aux = aux->next;
-		}
-	}
-	printf("----------- -----------\na           b\n");
-}
-
 int	main(int argc, char **argv, char **envp)
 {
 	char		*path;
 	char		**l_paths;
-	t_comm_path	*comm_dir;
+	t_comm_path	**comm_dir;
 	int			fd;
 	int			e;
 
 	e = 0;
 	comm_dir = 0;
-	if (argc != 3)
+	if (argc != 4)
 		ft_args_error();
 	path = ft_envp_path(envp, argc);
 	fd = open(argv[1], O_RDONLY);
@@ -124,7 +112,8 @@ int	main(int argc, char **argv, char **envp)
 	ft_open_outfile(argv[argc - 1]);
 	l_paths = ft_split(path, ':');
 	comm_dir = ft_accesslist(l_paths, argv, argc);
-	ft_command_validation(comm_dir, argv, e);
+	//ft_command_validation(comm_dir, argv, e);
+	ft_first_part(comm_dir[0], envp, argv);
 	ft_final_part(comm_dir, l_paths);
 	return (0);
 }
