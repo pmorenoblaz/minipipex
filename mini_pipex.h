@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   mini_pipex.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmoreno- <pmoreno-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 15:48:35 by pmoreno-          #+#    #+#             */
-/*   Updated: 2022/03/23 17:00:29 by pmoreno-         ###   ########.fr       */
+/*   Updated: 2022/04/08 18:27:24 by pmoreno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,8 @@ void			ft_final_part(t_comm_path **comm_dir, char **l_paths);
 // ft_first_command.c
 void			ft_first_child(char **argv, int fd1[2],
 					t_comm_path *act, char **envp);
-void			ft_second_part(t_comm_path *act, int *fd1,
-					char **argv, char **envp);
-void			ft_first_part(t_comm_path *act, char **envp, char **argv,
-					int tamlist);
+void			ft_second_part(int fd1[2], char **argv);
+void			ft_first_part(t_comm_path *act, char **envp, char **argv);
 void			ft_infile(int fd, int fd1[2]);
 
 //ft_free_variables.c
