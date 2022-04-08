@@ -6,7 +6,7 @@
 /*   By: pmoreno- <pmoreno-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 15:42:16 by pmoreno-          #+#    #+#             */
-/*   Updated: 2022/04/08 17:52:59 by pmoreno-         ###   ########.fr       */
+/*   Updated: 2022/04/08 18:51:14 by pmoreno-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	main(int argc, char **argv, char **envp)
 	ft_open_outfile(argv[argc - 1]);
 	l_paths = ft_split(path, ':');
 	comm_dir = ft_accesslist(l_paths, argv, argc);
-	//ft_command_validation(comm_dir, argv, e);
+	ft_command_validation(comm_dir, e);
 	ft_first_part(comm_dir[0], envp, argv);
 	ft_final_part(comm_dir, l_paths);
 	return (0);
